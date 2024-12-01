@@ -1,0 +1,16 @@
+# syntax=docker/dockerfile:1
+FROM docker.io/library/php:8.2-fpm
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    zip \
+    unzip
+
+WORKDIR /var/www
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+WORKDIR /var/www
+
+RUN composer require slim/slim:"4.*"
+RUN composer require slim/psr7

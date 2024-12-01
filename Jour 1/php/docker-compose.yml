@@ -1,0 +1,19 @@
+version: "0.1"
+services:
+    nginx:
+      image: docker.io/library/nginx:alpine
+      depends_on:
+       - php8
+      container_name: nginx
+      ports:
+       - 8080:80
+      volumes:
+       - ./src/nginx:/etc/nginx/conf.d:z
+       - ./src/www:/usr/share/nginx/html:z
+
+    php8:
+      build:
+            context: php8
+      container_name: php8
+      volumes:
+       - ./src/www:/usr/share/nginx/html:z
