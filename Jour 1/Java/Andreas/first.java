@@ -1,11 +1,12 @@
-package j1;
+package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
-public class first {
+public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> left = new ArrayList<Integer>();
         ArrayList<Integer> right = new ArrayList<Integer>();
@@ -26,7 +27,11 @@ public class first {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
+        int produit = 0;
+        for(int e : left){
+            produit += e * Collections.frequency(right,e);
+        }
+        System.out.println(produit);
 
         int sum = 0;
         int smallLeft = 0;
@@ -41,6 +46,7 @@ public class first {
             }
         }
         System.out.println(sum);
+
     }
     public static int findMin(ArrayList<Integer> list){
         int value = 99999999;
