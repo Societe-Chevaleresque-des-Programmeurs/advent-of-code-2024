@@ -1,0 +1,14 @@
+truncate table lefttable;
+INSERT INTO lefttable(lefttable.value)
+SELECT tableau.leftColone FROM tableau;
+
+TRUNCATE table rightable;
+INSERT INTO rightable(rightable.value)
+SELECT tableau.rightColone FROM tableau;
+
+truncate table store;
+INSERT INTO store 
+SELECT count(r.value)*l.value as k FROM `lefttable` l
+INNER join `rightable` r on l.value = r.value
+GROUP BY l.value;
+SELECT SUM(store.value) from store;
